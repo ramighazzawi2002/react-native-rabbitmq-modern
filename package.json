@@ -1,0 +1,44 @@
+{
+  "author": {
+    "name": "Rami Ghazzawi",
+    "email": "rami.ghazzawiabed@gmail.com"
+  },
+  "bugs": {
+    "url": "https://github.com/yourusername/react-native-rabbitmq-modern/issues"
+  },
+  "bundleDependencies": false,
+  "dependencies": {},
+  "deprecated": false,
+  "description": "A modernized RabbitMQ library for React Native, updated for compatibility with the latest React Native versions.",
+  "devDependencies": {},
+  "directories": {},
+  "homepage": "https://github.com/yourusername/react-native-rabbitmq-modern",
+  "keywords": [
+    "react-native",
+    "rabbitmq",
+    "message-queue",
+    "amqp",
+    "react-native-library",
+    "modern",
+    "updated",
+    "real-time",
+    "messaging"
+  ],
+  "license": "MIT",
+  "main": "index.js",
+  "maintainers": [
+    {
+      "name": "Rami Ghazzawi",
+      "email": "rami.ghazzawiabed@gmail.com"
+    }
+  ],
+  "name": "react-native-rabbitmq-modern",
+  "nativePackage": true,
+  "optionalDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yourusername/react-native-rabbitmq-modern.git"
+  },
+  "scripts": {},
+  "version": "1.0.0"
+}
