@@ -1,7 +1,7 @@
 #import <React/RCTBridgeModule.h>
 
-#import <RMQClient/RMQClient.h>
-#import <RMQClient/RMQChannel.h>
+#import <react_native_rabbitmq_modern/RMQClient.h>
+#import <react_native_rabbitmq_modern/RMQChannel.h>
 
 #import "RabbitMqQueue.h"
 #import "RabbitMqDelegateLogger.h"

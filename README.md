@@ -4,7 +4,7 @@
 
 ## IOS
 
-npm install react-native-rabbitmq-modern-modern --save
+npm install react-native-rabbitmq-modern --save
 
 Installation with CocoaPods
 
@@ -17,7 +17,7 @@ use_frameworks!
 2. Add the following to your Podfile, use master because needed fix is not a tag:
 
 ```
-pod 'react-native-rabbitmq-modern-modern', :path => '../node_modules/react-native-rabbitmq-modern-modern'
+pod 'react-native-rabbitmq-modern', :path => '../node_modules/react-native-rabbitmq-modern'
 pod 'RMQClient', :git => 'https://github.com/rabbitmq/rabbitmq-objc-client.git'
 ```
 
@@ -81,14 +81,14 @@ react-native link
 
 ## Android
 
-npm install react-native-rabbitmq-modern-modern --save
+npm install react-native-rabbitmq-modern --save
 
 react-native link
 
 ## Usage
 
 ```
-import { Connection, Exchange, Queue } from 'react-native-rabbitmq-modern-modern';
+import { Connection, Exchange, Queue } from 'react-native-rabbitmq-modern';
 
 const config = {
 	host:'',

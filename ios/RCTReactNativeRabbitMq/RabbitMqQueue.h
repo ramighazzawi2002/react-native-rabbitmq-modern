@@ -1,6 +1,7 @@
 #import <React/RCTBridgeModule.h>
 
-#import <RMQClient/RMQClient.h>
+//#import <RMQClient/RMQClient.h>
+#import <react_native_rabbitmq_modern/RMQClient.h>
 #import "EventEmitter.h"
 
 @interface RabbitMqQueue : NSObject <RCTBridgeModule>
