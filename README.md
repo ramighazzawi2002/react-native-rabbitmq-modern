@@ -1,148 +1,112 @@
-## Todo
+# 🐇 react-native-rabbitmq-modern
 
-## Installation
+**A modern revamp of `react-native-rabbitmq` — built to work seamlessly with the latest React Native and Expo versions.**
+Connect your React Native apps to RabbitMQ with an easy-to-use, reliable, and future-proof library.
 
-## IOS
+---
 
+## ✨ Overview
+
+`react-native-rabbitmq-modern` brings back full RabbitMQ support for modern React Native and Expo projects.
+The original `react-native-rabbitmq` library hasn’t been updated for recent RN/Expo versions — so this library was rebuilt and patched to make it **work out of the box** with today’s mobile environments.
+
+If you’ve been struggling to integrate RabbitMQ with your mobile app… this library is for you 🚀
+
+---
+
+## 📦 Installation
+
+```bash
 npm install react-native-rabbitmq-modern --save
-
-Installation with CocoaPods
-
-1. In the Podfile uncomment "use_frameworks" (Optional):
-
-```
-use_frameworks!
 ```
 
-2. Add the following to your Podfile, use master because needed fix is not a tag:
+Then link it:
 
-```
-pod 'react-native-rabbitmq-modern', :path => '../node_modules/react-native-rabbitmq-modern'
-pod 'RMQClient', :git => 'https://github.com/rabbitmq/rabbitmq-objc-client.git'
-```
-
-3. Install the cocapods:
-
-```
-pod install
+```bash
+react-native link react-native-rabbitmq-modern
 ```
 
-In xcode add a recursive Header Search Path:
+---
 
-```
-$(SRCROOT)/Pods
-```
+## 🚀 Usage Example
 
-You need to change some things, to make it work:
-
-ios\Pods\RMQClient\RMQClient\RMQValues.h Line 53
-
-```
-@import JKVValue;
-```
-
-to
-
-```
-#import "JKVValue.h"
-```
-
-ios\Pods\JKVValue\JKVValue\Public\JKVValue.h
-
-```
-#import <JKVValue/JKVValueImpl.h>
-#import <JKVValue/JKVMutableValue.h>
-#import <JKVValue/JKVObjectPrinter.h>
-#import <JKVValue/JKVFactory.h>
-```
-
-to
-
-```
-#import "JKVValueImpl.h"
-#import "JKVMutableValue.h"
-#import "JKVObjectPrinter.h"
-#import "JKVFactory.h"
-```
-
-ios\Pods\RMQClient\RMQClient\RMQTCPSocketTransport.h
-
-```
-@import CocoaAsyncSocket;
-```
-
-to
-
-```
-#import "GCDAsyncSocket.h"
-```
-
-react-native link
-
-## Android
-
-npm install react-native-rabbitmq-modern --save
-
-react-native link
-
-## Usage
-
-```
+```js
 import { Connection, Exchange, Queue } from 'react-native-rabbitmq-modern';
 
 const config = {
-	host:'',
-	port:5672,
-	username:'user',
-	password:'password',
-	virtualhost:'vhost',
-	ttl: 10000 // Message time to live,
-	ssl: true // Enable ssl connection, make sure the port is 5671 or an other ssl port
-}
+  host: 'your-rabbitmq-host',
+  port: 5672,
+  username: 'user',
+  password: 'password',
+  virtualhost: 'vhost',
+  ttl: 10000, // Message time to live
+  ssl: true, // Set to true if using SSL (use port 5671)
+};
 
-let connection = new Connection(config);
+const connection = new Connection(config);
 
-connection.on('error', (event) => {
-
+connection.on('error', (err) => {
+  console.log('Connection error:', err);
 });
 
-connection.on('connected', (event) => {
+connection.on('connected', () => {
+  console.log('Connected to RabbitMQ!');
 
-	let queue = new Queue( this.connection, {
-		name: 'queue_name',
-		passive: false,
-		durable: true,
-		exclusive: false,
-		consumer_arguments: {'x-priority': 1}
-	});
+  const queue = new Queue(connection, {
+    name: 'queue_name',
+    passive: false,
+    durable: true,
+    exclusive: false,
+    consumer_arguments: { 'x-priority': 1 },
+  });
 
-	let exchange = new Exchange(connection, {
-		name: 'exchange_name',
-		type: 'direct',
-		durable: true,
-		autoDelete: false,
-		internal: false
-	});
+  const exchange = new Exchange(connection, {
+    name: 'exchange_name',
+    type: 'direct',
+    durable: true,
+    autoDelete: false,
+    internal: false,
+  });
 
-	queue.bind(exchange, 'queue_name');
+  queue.bind(exchange, 'queue_name');
 
-	// Receive one message when it arrives
-	queue.on('message', (data) => {
+  queue.on('message', (data) => {
+    console.log('Received message:', data);
+  });
 
-	});
+  queue.on('messages', (data) => {
+    console.log('Received multiple messages:', data);
+  });
 
-	// Receive all messages send with in a second
-	queue.on('messages', (data) => {
+  const message = 'Hello from React Native!';
+  const routingKey = '';
+  const properties = { expiration: 10000 };
 
-	});
-
+  exchange.publish(message, routingKey, properties);
 });
-
-let message = 'test';
-let routing_key = '';
-let properties = {
-	expiration: 10000
-}
-exchange.publish(data, routing_key, properties)
-
 ```
+
+---
+
+## 🤝 Contributing
+
+This project is open to everyone who wants to help bring **RabbitMQ** to the **modern React Native ecosystem**.
+If you’ve fixed a bug, improved performance, or added support for a new feature — please open a **Pull Request**.
+
+Your help will make this library stronger and more stable for everyone 💪
+
+---
+
+## 🧑‍💻 Author
+
+**Rami Ghazzawi**
+Full Stack Developer | React Native Enthusiast
+📧 Open to collaboration and community contributions
+
+---
+
+## 📜 License
+
+MIT License © 2025 Rami Ghazzawi
+
+---
